@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Them · Fifth Dimension</title>
+    <!-- Font Awesome 6 + AOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #fbfcfe;
+            color: #1a2639;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1rem;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo i {
+            font-size: 2.2rem;
+            color: #3b3fda;
+            background: #e3e5ff;
+            padding: 0.5rem;
+            border-radius: 18px;
+            transition: transform 0.2s;
+        }
+        .logo i:hover { transform: scale(1.05); }
+        .logo h1 {
+            font-weight: 700;
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #3b3fda;
+            font-weight: 500;
+            background: #edeefc;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        .team-badge {
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.02);
+            font-weight: 500;
+            border: 1px solid #eaeef5;
+            transition: all 0.25s;
+        }
+        .team-badge:hover { box-shadow: 0 12px 24px rgba(30,40,100,0.1); transform: translateY(-2px); }
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            margin: 3rem 0 2rem;
+        }
+        .hero-text {
+            flex: 1 1 300px;
+        }
+        .hero-text .tagline {
+            background: #eef0ff;
+            color: #2f34b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            border: 1px solid #cdd2ff;
+        }
+        .hero-text h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 1.2rem;
+        }
+        .hero-text .highlight {
+            background: linear-gradient(145deg, #f3f4ff, white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+        }
+        .hero-para {
+            font-size: 1.2rem;
+            color: #2d3a4f;
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn-primary {
+            background: #1a1f3b;
+            color: white;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 8px 18px rgba(20,30,70,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            background: #2b3170;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 28px rgba(30,40,120,0.2);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #b5b9e0;
+            padding: 0.85rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #1e2a44;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .btn-outline:hover {
+            border-color: #3b3fda;
+            background: #f6f7ff;
+            transform: scale(1.02);
+        }
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+        }
+        .pill {
+            background: white;
+            border: 1px solid #dce2f0;
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.15s;
+        }
+        .pill:hover { background: #eaeefc; transform: translateY(-2px); }
+        .hero-img {
+            flex: 1 1 300px;
+            background: #e9ebf9;
+            border-radius: 38px;
+            padding: 1.5rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 25px 40px -12px #b5bce0;
+            border: 2px solid white;
+            transition: transform 0.3s;
+        }
+        .hero-img:hover { transform: scale(1.01); }
+        .mentor-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .mentor-card-small {
+            background: white;
+            border-radius: 28px;
+            padding: 1.2rem 1.2rem;
+            width: 140px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+            border: 1px solid #dee3f0;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .mentor-card-small:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 22px 30px -10px #98a0cf;
+            border-color: #3b3fda;
+        }
+        .badge-verified {
+            background: #1e8b4c;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 650;
+            margin: 3rem 0 1.5rem;
+            border-left: 8px solid #3b3fda;
+            padding-left: 1.5rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 32px;
+            border: 1px solid #eef2f9;
+            transition: all 0.25s;
+            box-shadow: 0 10px 18px -8px rgba(0,20,30,0.05);
+        }
+        .card:hover {
+            border-color: #3840c0;
+            box-shadow: 0 30px 34px -16px #6b74c7;
+            transform: translateY(-10px) scale(1.01);
+        }
+        .card i {
+            font-size: 2.5rem;
+            color: #3840c0;
+            margin-bottom: 1rem;
+            background: #f0f2fe;
+            padding: 0.6rem;
+            border-radius: 18px;
+        }
+        .mentor-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        .mentor-cat-card {
+            background: white;
+            border-radius: 40px;
+            padding: 1.8rem 1.2rem;
+            flex: 1 1 160px;
+            text-align: center;
+            box-shadow: 0 12px 20px -12px #a9b2dd;
+            border: 1px solid #dfe6ff;
+            transition: 0.25s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .mentor-cat-card:hover {
+            transform: translateY(-10px) rotate(0.5deg);
+            background: #f0f3ff;
+            border-color: #3b3fda;
+        }
+        .cat-price {
+            background: #191e3b;
+            color: white;
+            border-radius: 30px;
+            padding: 0.2rem 1rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+        .showstopper-card {
+            background: #f3f0ff;
+            border-radius: 40px;
+            padding: 2rem;
+            flex: 1 1 280px;
+            transition: 0.2s;
+        }
+        .showstopper-card:hover { background: #e8e4ff; transform: scale(1.02); }
+        .notes-cta {
+            background: #1a1f35;
+            color: white;
+            border-radius: 3rem;
+            padding: 2.2rem;
+            text-align: center;
+            margin: 2.5rem 0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .notes-cta:hover { background: #252c4a; transform: scale(1.01); box-shadow: 0 28px 30px -14px #252c6e; }
+        .page-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(6px);
+        }
+        .page-card {
+            background: white;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 40px 70px #0b0e28;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn {
+            float: right;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 1rem;
+        }
+        .page-card h2 { margin-bottom: 1rem; border-left: 6px solid #3b3fda; padding-left: 1rem; }
+        .mentor-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .mentor-item {
+            background: #f3f5fe;
+            border-radius: 30px;
+            padding: 1rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.15s;
+        }
+        .mentor-item:hover { background: #e2e6fd; transform: translateX(6px); }
+        .book-btn {
+            background: #1a1f3b;
+            color: white;
+            border: none;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .schedule-select { background: white; border-radius: 30px; padding: 0.2rem 1rem; border: 1px solid #b0b9ec; }
+        .college-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+        .college-item {
+            background: #eef0fa;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .college-item:hover { background: #ced5fd; }
+        hr { margin: 2rem 0; border: 1px solid #dee6f5; }
+        .footer-bottom { margin-top: 4rem; text-align: center; color: #596282; border-top: 2px dashed #cdd6f0; padding-top: 2.5rem; }
+        .team-note { background: #f6f7fd; border-radius: 60px; padding: 0.8rem 2rem; display: inline-block; }
+        @media (max-width:600px) { .hero-text h2 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="navbar" data-aos="fade-down">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+                <h1>Ask Them <span>Fifth Dimension</span></h1>
+            </div>
+            <div class="team-badge"><i class="fas fa-crown"></i> Riya · Ayush · Ashutosh · Kashish · Kumar Gaurav</div>
+        </div>
+
+        <!-- hero -->
+        <div class="hero">
+            <div class="hero-text" data-aos="fade-right">
+                <div class="tagline"><i class="fas fa-rocket"></i> mentorship matching · verified achievers</div>
+                <h2>Connecting <span class="highlight">ambition</span> <i class="fa-regular fa-handshake"></i> <span class="highlight">expertise</span></h2>
+                <p class="hero-para">Direct, short, goal‑oriented mentoring – learners meet IITians, NITians, IIM grads, AIIMSonians, artists & more.</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary" id="findMentorBtn"><i class="fas fa-bolt"></i> Find a mentor</button>
+                    <button class="btn-outline" id="becomeMentorBtn"><i class="fas fa-chalkboard-user"></i> Become mentor</button>
+                </div>
+                <div class="pill-container">
+                    <span class="pill"><i class="fas fa-check-circle"></i> verified</span>
+                    <span class="pill"><i class="fas fa-indian-rupee-sign"></i> affordable</span>
+                    <span class="pill"><i class="fas fa-bullseye"></i> goal‑based</span>
+                </div>
+            </div>
+            <div class="hero-img" data-aos="fade-left">
+                <i class="fas fa-user-graduate" style="font-size: 3rem; color:#2b2f6e;"></i>
+                <div class="mentor-grid">
+                    <div class="mentor-card-small" data-cat="iitian">
+                        <i class="fas fa-user-tie"></i>
+                        <div><strong>IITian mentor</strong></div>
+                        <div class="badge-verified">verified</div>
+                    </div>
+                    <div class="mentor-card-small" data-cat="artist">
+                        <i class="fas fa-paint-brush"></i>
+                        <div><strong>artist</strong></div>
+                        <div class="badge-verified" style="background:#aa47bc;">pro</div>
+                    </div>
+                    <div class="mentor-card-small" data-cat="iim">
+                        <i class="fas fa-chart-line"></i>
+                        <div><strong>IIM grad</strong></div>
+                        <div class="badge-verified">mentor</div>
+                    </div>
+                    <!-- new AIIMSonian card -->
+                    <div class="mentor-card-small" data-cat="aiims">
+                        <i class="fas fa-user-md"></i>
+                        <div><strong>AIIMSonian</strong></div>
+                        <div class="badge-verified" style="background:#b9457a;">doctor</div>
+                    </div>
+                </div>
+                <p style="margin-top:1rem; font-weight:500;">real achievers · zero clutter</p>
+            </div>
+        </div>
+
+        <!-- mentorship gap -->
+        <h2 class="section-title" data-aos="fade-up">🧩 The mentorship gap</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; background: #f6f8ff; border-radius: 40px; padding: 2rem; margin: 1.5rem 0;" data-aos="fade-up">
+            <div style="flex:2; min-width: 260px;">
+                <p style="font-size:1.2rem;">Learners struggle to find <strong>proper guidance</strong> – costly platforms, unstructured advice, no verified experts. </p>
+            </div>
+        </div>
+
+        <!-- 4 pillars -->
+        <h2 class="section-title" data-aos="fade-up">⚡ Our solution</h2>
+        <div class="grid-4">
+            <div class="card" data-aos="zoom-in"><i class="fas fa-people-arrows"></i><h3>Centralized matching</h3><p>Verified mentors – IITians, NITians, AIIMSonians, artists, professionals.</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-bullseye"></i><h3>Goal‑oriented</h3><p>Specify your aim → precise mentor suggestions.</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-calendar-check"></i><h3>Direct interaction</h3><p>Book sessions, roadmaps & personal guidance.</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-coins"></i><h3>Affordable</h3><p>Budget‑friendly sessions for learners & mentors.</p></div>
+        </div>
+
+        <!-- Find mentor categories: 5 cards -->
+        <h2 class="section-title" data-aos="fade-up">🎯 Find mentor by domain – starting @₹99/session</h2>
+        <div class="mentor-row" id="mentorCategoryRow">
+            <div class="mentor-cat-card" data-category="iit-niti">
+                <i class="fas fa-flask" style="font-size:2.5rem;"></i>
+                <h3>IITians / NITians</h3>
+                <span class="cat-price">@ ₹99</span>
+            </div>
+            <div class="mentor-cat-card" data-category="artist">
+                <i class="fas fa-paint-brush" style="font-size:2.5rem;"></i>
+                <h3>Artists</h3>
+                <span class="cat-price">@ ₹99</span>
+            </div>
+            <div class="mentor-cat-card" data-category="iim">
+                <i class="fas fa-chart-pie" style="font-size:2.5rem;"></i>
+                <h3>IIM grads</h3>
+                <span class="cat-price">@ ₹99</span>
+            </div>
+            <div class="mentor-cat-card" data-category="aiims">
+                <i class="fas fa-hospital" style="font-size:2.5rem;"></i>
+                <h3>AIIMS / Medical</h3>
+                <span class="cat-price">@ ₹99</span>
+            </div>
+        </div>
+
+        <!-- showstopper -->
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 3rem 0;" data-aos="fade-up">
+            <div class="showstopper-card">
+                <h3>✨ Our showstopper <i class="fas fa-fire" style="color:#f2890f;"></i></h3>
+                <ul style="list-style: none; margin-top:1rem;">
+                    <li><i class="fas fa-check-circle" style="color:#3840c0;"></i> direct verified connection</li>
+                    <li><i class="fas fa-check-circle" style="color:#3840c0;"></i> goal‑based matching</li>
+                    <li><i class="fas fa-check-circle" style="color:#3840c0;"></i> student‑friendly UX</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Notes marketplace CTA -->
+        <div class="notes-cta" id="notesCta" data-aos="flip-up">
+            <i class="fas fa-book-open" style="font-size: 3rem; background: #464fa0; padding: 1rem; border-radius: 60px;"></i>
+            <h2 style="margin: 1rem 0;">📝 Notes marketplace</h2>
+            <p>Mentors upload handwritten notes · aspirants purchase low cost · revenue share</p>
+            <button class="btn-primary" style="margin-top:1rem; background: white; color:#1a1f3b;" id="openNotesPageBtn">Explore notes <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- footer -->
+        <hr>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <div class="team-note"><i class="fas fa-crown" style="color:#f5b342;"></i> Fifth dimension: Riya, Ayush, Ashutosh, Kashish, Kumar Gaurav</div>
+            <div><i class="fas fa-envelope"></i> contact@askthem.fifthdim</div>
+        </div>
+        <div class="footer-bottom">
+            <p>© Ask Them – verified achievers, real guidance.</p>
+            <p>#DirectInteraction #GoalOriented #MentorEmpowerment</p>
+        </div>
+    </div>
+
+    <!-- OVERLAY PAGES -->
+    <!-- FIND MENTOR PAGE -->
+    <div id="findMentorPage" class="page-overlay">
+        <div class="page-card">
+            <button class="close-btn" id="closeFindMentor">&times;</button>
+            <h2>Find a mentor <span style="font-size:1rem;">starting ₹99/session</span></h2>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin:1rem 0;">
+                <span class="pill" data-filter="all">All</span>
+                <span class="pill" data-filter="iit">IITians</span>
+                <span class="pill" data-filter="nit">NITians</span>
+                <span class="pill" data-filter="iim">IIM</span>
+                <span class="pill" data-filter="aiims">AIIMS</span>
+                <span class="pill" data-filter="artist">Artist</span>
+            </div>
+            <h3><i class="fas fa-circle" style="color:#4cd964; font-size:0.8rem;"></i> live now</h3>
+            <div class="mentor-list" id="liveMentorList"></div>
+            <h3 style="margin-top:1.5rem;">📅 schedule a meeting</h3>
+            <div class="mentor-list" id="scheduleMentorList"></div>
+            <p><small>click "book" to confirm instant or pick time</small></p>
+        </div>
+    </div>
+
+    <!-- BECOME MENTOR PAGE -->
+    <div id="becomeMentorPage" class="page-overlay">
+        <div class="page-card">
+            <button class="close-btn" id="closeBecomeMentor">&times;</button>
+            <h2>Apply as mentor</h2>
+            <p>Choose your category & tell us about yourself</p>
+            <div style="display:flex; flex-direction:column; gap:1.5rem; margin:2rem 0;">
+                <select style="padding:1rem; border-radius:60px; border:1px solid #b5b9e0;">
+                    <option>IITian / NITian</option>
+                    <option>IIM graduate</option>
+                    <option>AIIMS / Medical</option>
+                    <option>Artist / Designer</option>
+                    <option>Other professional</option>
+                </select>
+                <input type="text" placeholder="Your college / institution" style="padding:1rem; border-radius:60px; border:1px solid #b5b9e0;">
+                <textarea placeholder="Short bio (branch, achievements, ...)" rows="3" style="padding:1rem; border-radius:30px;"></textarea>
+                <button class="btn-primary" style="width:fit-content;">Submit application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTES PAGE with category filtering -->
+    <div id="notesPage" class="page-overlay">
+        <div class="page-card">
+            <button class="close-btn" id="closeNotesPage">&times;</button>
+            <h2>📔 Notes marketplace</h2>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;">
+                <button class="btn-outline" id="showAddNotes">+ Add notes</button>
+                <button class="btn-outline" id="showSeeNotes">📖 See notes</button>
+            </div>
+            <!-- ADD NOTES SECTION -->
+            <div id="addNotesSection" style="display: none; background:#f3f5ff; border-radius: 40px; padding:1.5rem;">
+                <h3>Upload handwritten notes</h3>
+                <input type="text" placeholder="Subject / topic" style="width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:40px;">
+                <select style="width:100%; padding:0.8rem; border-radius:40px;">
+                    <option>Select college category</option>
+                    <option>IIT / NIT</option>
+                    <option>AIIMS / Medical</option>
+                    <option>IIM</option>
+                    <option>Arts</option>
+                </select>
+                <button class="btn-primary" style="margin-top:1rem;">Upload</button>
+            </div>
+            <!-- SEE NOTES SECTION with filterable college list -->
+            <div id="seeNotesSection" style="display: none;">
+                <h3>Browse notes by college</h3>
+                <!-- filter pills inside notes -->
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin:1rem 0;">
+                    <span class="pill filter-college" data-filter="all">All</span>
+                    <span class="pill filter-college" data-filter="iit">IIT/NIT</span>
+                    <span class="pill filter-college" data-filter="aiims">AIIMS/Medical</span>
+                    <span class="pill filter-college" data-filter="iim">IIM</span>
+                    <span class="pill filter-college" data-filter="arts">Arts</span>
+                </div>
+                <div class="college-grid" id="collegeList"></div>
+                <p style="margin-top:1rem;">click on any college to see notes (demo)</p>
+            </div>
+            <!-- master college list container (always visible) -->
+            <div id="allCollegesContainer" style="margin-top: 2rem;">
+                <h4>All B.Tech / Medical / AIIMS / IIM colleges</h4>
+                <div class="college-grid" id="masterCollegeGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: false, offset: 60 });
+
+        // Extended college database with categories
+        const collegeDB = [
+            { name: "IIT Bombay", cat: "iit" },
+            { name: "IIT Delhi", cat: "iit" },
+            { name: "IIT Kanpur", cat: "iit" },
+            { name: "IIT Kharagpur", cat: "iit" },
+            { name: "IIT Madras", cat: "iit" },
+            { name: "IIT Roorkee", cat: "iit" },
+            { name: "NIT Trichy", cat: "iit" },
+            { name: "NIT Surathkal", cat: "iit" },
+            { name: "NIT Warangal", cat: "iit" },
+            { name: "NIT Calicut", cat: "iit" },
+            { name: "AIIMS Delhi", cat: "aiims" },
+            { name: "AIIMS Nagpur", cat: "aiims" },
+            { name: "AIIMS Rishikesh", cat: "aiims" },
+            { name: "JIPMER", cat: "aiims" },
+            { name: "Armed Forces Medical", cat: "aiims" },
+            { name: "Maulana Azad Medical", cat: "aiims" },
+            { name: "BHU Medical", cat: "aiims" },
+            { name: "IIM Ahmedabad", cat: "iim" },
+            { name: "IIM Bangalore", cat: "iim" },
+            { name: "IIM Calcutta", cat: "iim" },
+            { name: "IIM Lucknow", cat: "iim" },
+            { name: "IIM Indore", cat: "iim" },
+            { name: "JNU", cat: "arts" },
+            { name: "BCE BHAGALPUR", cat: "iit" },
+            { name: "IIIT BHAGALPUR", cat: "iit" },
+            { name: "NID Ahmedabad", cat: "arts" },
+            { name: "Srishti Institute", cat: "arts" }
+        ];
+
+        const liveMentors = [
+            { name: "Rahul Sharma", type: "IITian", college: "IIT Bombay", branch: "CSE", available: true },
+            { name: "Anjali Patel", type: "AIIMS", college: "AIIMS Delhi", branch: "Cardiology", available: true },
+            { name: "Karan Mehta", type: "IIM", college: "IIM Ahmedabad", branch: "Finance", available: true },
+            { name: "Priya Nair", type: "Artist", college: "NID", branch: "Visual Arts", available: true },
+            { name: "Dr. Sneha Iyer", type: "AIIMS", college: "AIIMS Nagpur", branch: "Medicine", available: true },
+        ];
+        const scheduleMentors = [
+            { name: "Vikram Singh", type: "IITian", college: "IIT Kanpur", branch: "Mechanical", slots: ["tomorrow 10am", "fri 4pm"] },
+            { name: "Dr. Arjun", type: "AIIMS", college: "AIIMS Rishikesh", branch: "Medicine", slots: ["today 8pm", "sat 11am"] },
+        ];
+
+        // overlay references
+        const findOverlay = document.getElementById('findMentorPage');
+        const becomeOverlay = document.getElementById('becomeMentorPage');
+        const notesOverlay = document.getElementById('notesPage');
+
+        document.getElementById('findMentorBtn').addEventListener('click', ()=>{
+            findOverlay.style.display = 'flex';
+            renderLiveMentors();
+        });
+        document.getElementById('becomeMentorBtn').addEventListener('click', ()=>{
+            becomeOverlay.style.display = 'flex';
+        });
+        document.getElementById('notesCta').addEventListener('click', ()=>{
+            notesOverlay.style.display = 'flex';
+            showAllColleges(); // show all initially
+        });
+        document.getElementById('openNotesPageBtn').addEventListener('click', (e)=>{
+            e.stopPropagation();
+            notesOverlay.style.display = 'flex';
+            showAllColleges();
+        });
+
+        // close buttons
+        document.getElementById('closeFindMentor').addEventListener('click', ()=> findOverlay.style.display='none');
+        document.getElementById('closeBecomeMentor').addEventListener('click', ()=> becomeOverlay.style.display='none');
+        document.getElementById('closeNotesPage').addEventListener('click', ()=> notesOverlay.style.display='none');
+
+        // category cards open find mentor page
+        document.querySelectorAll('.mentor-card-small, .mentor-cat-card').forEach(el => {
+            el.addEventListener('click', (e) => {
+                findOverlay.style.display = 'flex';
+                renderLiveMentors();
+            });
+        });
+
+        function renderLiveMentors() {
+            const liveDiv = document.getElementById('liveMentorList');
+            const scheduleDiv = document.getElementById('scheduleMentorList');
+            if (!liveDiv) return;
+            liveDiv.innerHTML = '';
+            scheduleDiv.innerHTML = '';
+            liveMentors.forEach(m => {
+                if (m.available) {
+                    liveDiv.innerHTML += `<div class="mentor-item"><span><strong>${m.name}</strong> (${m.type}) · ${m.college} · ${m.branch}</span><button class="book-btn">Instant book</button></div>`;
+                }
+            });
+            scheduleMentors.forEach(m => {
+                scheduleDiv.innerHTML += `<div class="mentor-item"><span><strong>${m.name}</strong> ${m.college} · ${m.branch}</span> <select class="schedule-select"><option>${m.slots[0]}</option><option>${m.slots[1]}</option></select> <button class="book-btn">Schedule</button></div>`;
+            });
+        }
+
+        // display all colleges in master grid
+        function showAllColleges() {
+            const masterGrid = document.getElementById('masterCollegeGrid');
+            if (masterGrid) {
+                masterGrid.innerHTML = collegeDB.map(c => `<div class="college-item" data-cat="${c.cat}">${c.name}</div>`).join('');
+            }
+            // also set see notes grid to all by default
+            filterCollegeList('all');
+        }
+
+        // filter college list based on category
+        function filterCollegeList(category) {
+            const seeGrid = document.getElementById('collegeList');
+            if (!seeGrid) return;
+            const filtered = category === 'all' ? collegeDB : collegeDB.filter(c => c.cat === category);
+            seeGrid.innerHTML = filtered.map(c => `<div class="college-item" data-cat="${c.cat}">${c.name}</div>`).join('');
+        }
+
+        // toggle add/see notes
+        document.getElementById('showAddNotes').addEventListener('click', ()=>{
+            document.getElementById('addNotesSection').style.display = 'block';
+            document.getElementById('seeNotesSection').style.display = 'none';
+        });
+        document.getElementById('showSeeNotes').addEventListener('click', ()=>{
+            document.getElementById('seeNotesSection').style.display = 'block';
+            document.getElementById('addNotesSection').style.display = 'none';
+            filterCollegeList('all'); // default all
+        });
+
+        // filter pills inside notes page
+        document.querySelectorAll('.filter-college').forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                const filter = e.target.getAttribute('data-filter');
+                filterCollegeList(filter);
+            });
+        });
+
+        // close overlay when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('page-overlay')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // initial master load
+        showAllColleges();
+    </script>
+</body>
+</html>
